@@ -10,15 +10,16 @@ import java.sql.Statement;
 public class DBconnection 
 {
 	static Connection conn;
+	static PropertiesDB p = new PropertiesDB();
 	
     public static Connection connect() throws ClassNotFoundException
     {  	
     try
     	{
 			// db parameters
-		   String jdbc_url = "jdbc:mysql://localhost:3306/emp_payroll";
-		   String user = "root";
-		   String password = "root";
+		   String jdbc_url = p.jdbc_url;
+		   String user = p.user;
+		   String password = p.password;
 		   
 		   // load Drivers
 		   Class.forName("com.mysql.cj.jdbc.Driver");
@@ -29,7 +30,7 @@ public class DBconnection
 		   System.out.println("Connected");
 		   
     	}
-    catch(SQLException e) 
+    catch(ClassNotFoundException | SQLException e) 
     	{
     		e.printStackTrace();
     	}
